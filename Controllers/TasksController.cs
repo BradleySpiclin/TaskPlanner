@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TaskPlanner.Controllers
 {
-    public class TaskController : Controller
+    public class TasksController : Controller
     {
         private readonly ITaskService _service;
 
-        public TaskController(ITaskService service)
+        public TasksController(ITaskService service)
         {
             _service = service;
         }
