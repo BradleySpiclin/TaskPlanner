@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace TaskPlanner.Models
 {
-    public class Task
+    public class TaskItem
     {
         [Key]
         public int TaskId { get; set; }
@@ -22,5 +22,11 @@ namespace TaskPlanner.Models
         [Display(Name = "Task Due Date")]
         [Required(ErrorMessage = "Date required")]
         public DateTime TaskDueDate { get; set; }
+
+        [Display(Name = "Task Completed?")]
+        public bool IsComplete { get; set; }
+
+        [Display(Name = "Date Completed")]
+        public DateTime? CompletedDate { get; set; }
     }
 }

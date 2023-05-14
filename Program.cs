@@ -13,7 +13,7 @@ namespace TaskPlanner
             builder.Services.AddControllersWithViews();
 
             // DbContext configuration
-            builder.Services.AddDbContext<TaskContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+            //builder.Services.AddDbContext<TaskContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
             var app = builder.Build();
 
