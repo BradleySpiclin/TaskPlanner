@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TaskItem>
+
+@{
+    ViewData["Title"] = "List of Tasks";
+}
+
+<div class="row">
+	@foreach (var item in Model)
+	{
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.UnitCode
+                                 @*   @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                    }*@
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                @*    <div class="col-md-6">
+                        <img src="@item.ImageURL" class="game-image" alt="@item.Name">
+                    </div>*@
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.TaskName</p>
+                            <p class="card-text"><b>Genre: </b>@item.TaskComments</p>
+                            <p class="card-text"><b>Release Date: </b>@item.TaskDueDate.ToString("dd MMM yyyy")</p>
+                            <p class="card-text"><b>Developer: </b>@item.TaskComments</p>
+                            <p class="card-text "></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+<div style="position: fixed; right: 25px; bottom: 25px; " class="text-white">
+    <a asp-controller="Tasks" asp-action="Create" class="btn btn-success"> <i class="bi bi-plus-circle"></i> Add New </a>
+</div>

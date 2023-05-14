@@ -1,5 +1,6 @@
 using System;
 using TaskPlanner.Data;
+using TaskPlanner.Data.Services;
 
 namespace TaskPlanner
 {
@@ -14,6 +15,9 @@ namespace TaskPlanner
 
             // DbContext configuration
             //builder.Services.AddDbContext<TaskContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+            // Add the tasks service
+            builder.Services.AddScoped<ITaskService, TaskService>();
 
             var app = builder.Build();
 

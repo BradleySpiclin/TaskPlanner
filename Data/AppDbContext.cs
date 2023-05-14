@@ -4,9 +4,9 @@ using TaskPlanner.Models;
 
 namespace TaskPlanner.Data
 {
-    public class TaskContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public TaskContext(DbContextOptions<TaskContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }

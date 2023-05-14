@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using TaskPlanner.Data.Base;
 
 namespace TaskPlanner.Models
 {
-    public class TaskItem
+    public class TaskItem : IEntityBase
     {
         [Key]
-        public int TaskId { get; set; }
+        public int Id { get; set; }
+
         [Display(Name = "Unit Code")]
         [Required(ErrorMessage = "Unit code required")]
         public string UnitCode { get; set; }
