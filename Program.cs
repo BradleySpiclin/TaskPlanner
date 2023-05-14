@@ -1,3 +1,6 @@
+using System;
+using TaskPlanner.Data;
+
 namespace TaskPlanner
 {
     public class Program
@@ -8,6 +11,9 @@ namespace TaskPlanner
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // DbContext configuration
+            builder.Services.AddDbContext<TaskContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
             var app = builder.Build();
 
