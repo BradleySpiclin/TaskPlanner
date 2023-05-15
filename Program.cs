@@ -1,6 +1,7 @@
-using System;
+using Microsoft.EntityFrameworkCore;
 using TaskPlanner.Data;
 using TaskPlanner.Data.Services;
+
 
 namespace TaskPlanner
 {
@@ -14,12 +15,15 @@ namespace TaskPlanner
             builder.Services.AddControllersWithViews();
 
             // DbContext configuration
-            //builder.Services.AddDbContext<TaskContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
             // Add the tasks service
             builder.Services.AddScoped<ITaskService, TaskService>();
 
             var app = builder.Build();
+
+            // Seed database
+            AppDbInitializer.Seed(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -38,7 +42,7 @@ namespace TaskPlanner
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Tasks}/{action=Index}/{id?}");
 
             app.Run();
         }

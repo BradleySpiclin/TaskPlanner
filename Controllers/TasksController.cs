@@ -26,7 +26,7 @@ namespace TaskPlanner.Controllers
 
         // POST: Tasks/Create/
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] TaskItem task)
+        public async Task<IActionResult> Create([Bind("UnitCode,TaskName,TaskComments,TaskDueDate")] TaskItem task)
         {
             if (!ModelState.IsValid)
                 return View(task);
@@ -57,13 +57,29 @@ namespace TaskPlanner.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] TaskItem task)
+        public async Task<IActionResult> Edit(int id, TaskItem task)
         {
             if (!ModelState.IsValid)
                 return View(task);
 
-            await _service.UpdateAsync(id, task);
+            var existingTask = await _service.GetByIdAsync(id);
+            if (existingTask == null)
+                return NotFound();
+
+            existingTask.UnitCode = task.UnitCode;
+            existingTask.TaskName = task.TaskName;
+            existingTask.TaskComments = task.TaskComments;
+            existingTask.TaskDueDate = task.TaskDueDate;
+            existingTask.IsComplete = task.IsComplete;
+            existingTask.CompletedDate = task.CompletedDate;
+
+            await _service.UpdateAsync(id, existingTask);
             return RedirectToAction(nameof(Index));
+            /*  if (!ModelState.IsValid)
+                  return View(task);
+
+              await _service.UpdateAsync(id, task);
+              return RedirectToAction(nameof(Index));*/
         }
 
         // GET: Tasks/Delete/1

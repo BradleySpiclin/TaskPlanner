@@ -14,8 +14,8 @@ namespace TaskPlanner.Models
         [Required(ErrorMessage = "Unit code required")]
         public string UnitCode { get; set; }
 
-        [Display(Name = "Task Description")]
-        [Required(ErrorMessage = "Task description required")]
+        [Display(Name = "Task Name")]
+        [Required(ErrorMessage = "Task name required")]
         public string TaskName { get; set; }
 
         [Display(Name = "Task Comments")]
