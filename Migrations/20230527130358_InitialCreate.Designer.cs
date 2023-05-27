@@ -12,8 +12,8 @@ using TaskPlanner.Data;
 namespace TaskPlanner.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230515122850_Initial")]
-    partial class Initial
+    [Migration("20230527130358_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
