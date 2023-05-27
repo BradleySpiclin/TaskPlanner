@@ -12,7 +12,7 @@ using TaskPlanner.Data;
 namespace TaskPlanner.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230527130358_InitialCreate")]
+    [Migration("20230527135203_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
