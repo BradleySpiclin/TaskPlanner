@@ -19,19 +19,10 @@ namespace TaskPlanner
             builder.Services.AddControllersWithViews();
 
 
-    /*      Retrieves the passwordless database connection string from the appsettings.Development.json 
-     *      file for local development, or from the environment variables for hosted production scenarios.
-            Registers the Entity Framework Core DbContext class with the.NET dependency injection container.*/
-            var connection = String.Empty;
-            if (builder.Environment.IsDevelopment())
-            {
-                builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
-                connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
-            }
-            else
-            {
-                connection = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-            }
+            /*Retrieves the passwordless database connection string from the appsettings.Development.json 
+             *      file for local development, or from the environment variables for hosted production scenarios.
+                    Registers the Entity Framework Core DbContext class with the.NET dependency injection container.*/
+            var connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
 
             // DbContext configuration
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
