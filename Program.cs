@@ -42,7 +42,7 @@ namespace TaskPlanner
             var app = builder.Build();
 
             // Seed database
-            AppDbInitializer.Seed(app);
+            //AppDbInitializer.Seed(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
