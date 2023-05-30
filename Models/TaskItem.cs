@@ -28,7 +28,7 @@ namespace TaskPlanner.Models
 
         [Display(Name = "Task Due Date")]
         [Required(ErrorMessage = "Date required")]
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [Display(Name = "Task Completed?")]
         public bool IsComplete { get; set; }
