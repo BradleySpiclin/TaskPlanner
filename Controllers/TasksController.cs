@@ -67,9 +67,9 @@ namespace TaskPlanner.Controllers
                 return NotFound();
 
             existingTask.UnitCode = task.UnitCode;
-            existingTask.TaskName = task.TaskName;
-            existingTask.TaskComments = task.TaskComments;
-            existingTask.TaskDueDate = task.TaskDueDate;
+            existingTask.Name = task.Name;
+            existingTask.Comments = task.Comments;
+            existingTask.DueDate = task.DueDate;
             existingTask.IsComplete = task.IsComplete;
             existingTask.CompletedDate = task.CompletedDate;
 

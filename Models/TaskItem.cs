@@ -12,7 +12,7 @@ namespace TaskPlanner.Models
         public int Id { get; set; }
 
         [Display(Name = "Unit Code")]
-        [Required(ErrorMessage = "Invalid unit code.")]
+        [Required(ErrorMessage = "Unit code required")]
         public string UnitCode
         {
             get { return _unitCode; }
@@ -21,14 +21,14 @@ namespace TaskPlanner.Models
 
         [Display(Name = "Task Name")]
         [Required(ErrorMessage = "Task name required")]
-        public string TaskName { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Task Comments")]
-        public string TaskComments { get; set; }
+        public string Comments { get; set; }
 
         [Display(Name = "Task Due Date")]
         [Required(ErrorMessage = "Date required")]
-        public DateTime TaskDueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         [Display(Name = "Task Completed?")]
         public bool IsComplete { get; set; }

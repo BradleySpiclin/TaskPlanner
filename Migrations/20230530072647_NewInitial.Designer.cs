@@ -12,8 +12,8 @@ using TaskPlanner.Data;
 namespace TaskPlanner.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230527135203_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230530072647_NewInitial")]
+    partial class NewInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,20 +33,21 @@ namespace TaskPlanner.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CompletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DueDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsComplete")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TaskComments")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TaskDueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TaskName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
