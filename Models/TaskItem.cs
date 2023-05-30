@@ -7,12 +7,17 @@ namespace TaskPlanner.Models
 {
     public class TaskItem : IEntityBase
     {
+        private string? _unitCode;
         [Key]
         public int Id { get; set; }
 
         [Display(Name = "Unit Code")]
-        [Required(ErrorMessage = "Unit code required")]
-        public string UnitCode { get; set; }
+        [Required(ErrorMessage = "Invalid unit code.")]
+        public string UnitCode
+        {
+            get { return _unitCode; }
+            set { _unitCode = value.ToUpper(); } //always force unit code to uppercase
+        }
 
         [Display(Name = "Task Name")]
         [Required(ErrorMessage = "Task name required")]

@@ -75,11 +75,6 @@ namespace TaskPlanner.Controllers
 
             await _service.UpdateAsync(id, existingTask);
             return RedirectToAction(nameof(Index));
-            /*  if (!ModelState.IsValid)
-                  return View(task);
-
-              await _service.UpdateAsync(id, task);
-              return RedirectToAction(nameof(Index));*/
         }
 
         // GET: Tasks/Delete/1
