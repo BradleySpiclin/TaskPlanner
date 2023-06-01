@@ -40,7 +40,7 @@ jobs:
       - name: Checkout unit tests repository
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/BradleySpiclin/TaskPlanner.UnitTests.git
+          repository: BradleySpiclin/TaskPlanner.UnitTests
           ref: master
           token: ${{ secrets.PAT_TOKEN }}
 
