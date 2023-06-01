@@ -26,7 +26,7 @@ namespace TaskPlanner.Controllers
 
         // POST: Tasks/Create/
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("UnitCode,TaskName,TaskComments,TaskDueDate")] TaskItem task)
+        public async Task<IActionResult> Create([Bind("UnitCode,Name,Comments,DueDate")] TaskItem task)
         {
             if (!ModelState.IsValid)
                 return View(task);

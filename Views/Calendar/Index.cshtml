@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TaskItem>
+
+<h1>Calendar goes here....</h1>
+
+@{
+    DateTime currentDate = DateTime.Now;
+    int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+    DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+    int firstDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
+}
+
+<h2>@currentDate.ToString("MMMM yyyy")</h2>
+
+<div class="calendar-grid">
+    <div class="calendar-header">
+        <div class="grid-item">Sun</div>
+        <div class="grid-item">Mon</div>
+        <div class="grid-item">Tue</div>
+        <div class="grid-item">Wed</div>
+        <div class="grid-item">Thu</div>
+        <div class="grid-item">Fri</div>
+        <div class="grid-item">Sat</div>
+    </div>
+    <div class="calendar-body">
+        @for (int week = 0; week < 6; week++)
+        {
+            <div class="calendar-row">
+                @for (int dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++)
+                {
+                    int dayIndex = (week * 7) + dayOfWeek;
+                    int dayOfMonth = dayIndex - firstDayOfWeek + 1;
+
+                    DateTime date;
+                    if (dayOfMonth >= 1 && dayOfMonth <= daysInMonth)
+                    {
+                        date = new DateTime(currentDate.Year, currentDate.Month, dayOfMonth);
+                    }
+                    else
+                    {
+                        date = DateTime.MinValue; // Placeholder value for days outside the current month
+                    }
+
+                    bool isCurrentMonth = dayOfMonth >= 1 && dayOfMonth <= daysInMonth;
+                    bool isToday = date.Date == DateTime.Today.Date;
+                    string cellClass = isCurrentMonth ? "" : "non-current-month";
+                    if (isToday)
+                    {
+                        cellClass += " today";
+                    }
+
+                    <div class="grid-item @cellClass">
+                        <div class="date">@dayOfMonth</div>
+                        <div class="tasks">
+                            @if (Model != null)
+                            {
+                                foreach (var taskItem in Model)
+                                {
+                                    if (taskItem.DueDate.Date == date.Date)
+                                    {
+                                        <div class="task-item">
+                                            <span class="task-title">@taskItem.UnitCode</span>
+                                            <span class="task-description">@taskItem.Name</span>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
