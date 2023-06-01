@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --project TaskPlanner.csproj
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
@@ -42,7 +42,6 @@ jobs:
         with:
           repository: BradleySpiclin/TaskPlanner.UnitTests
           ref: master
-          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
